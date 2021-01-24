@@ -6,8 +6,4 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+This is a project for the Udacity Frontend Nanodegree course. The aims of this project are to turn a static site comprising of only HTML and CSS into an interactive site with dynamically created content using JavaScript. Examples of such include a dynamically generated navbar, assigning/removing an "active class" to/from a section depending on which section is in the viewport, and a "scroll-to-anchor" function whereby clicking on the navbar link will automatically scroll to the targeted section. 
