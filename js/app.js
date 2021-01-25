@@ -15,44 +15,80 @@
 
 /**
  * Define Global Variables
- * 
 */
-
 const navBar = document.getElementById('navbar__list');
 const sections = document.querySelectorAll('section');
-
-
 /**
  * End Global Variables
+ * 
  * Start Helper Functions
  * 
 */
 
 
+// collapsible content controls
+
+document.querySelectorAll('.accordion__button').forEach(button => {
+    button.addEventListener('click', () => {
+
+        button.classList.toggle('accordion__button--active');
+
+    });
+
+});
+
+
+
+// show nav while scrolling/hide nav when scrolling stops
+
+let foo = null;
+
+document.addEventListener('scroll', () => {
+    const thisNav = document.querySelector('nav');
+    // clearTimeout method stops setTimeout from kicking in & displays nav while scrolling
+    if(foo !== null) {
+        clearTimeout(foo);
+        thisNav.style.display = 'block';
+    }
+
+    // hides nav when scrolling stops
+    foo = setTimeout(() => {
+        thisNav.style.display = 'none';
+    }, 4000);
+
+});
 
 /**
- * End Helper Functions
- * Begin Main Functions
+* End Helper Functions
+ * 
+ * 
+ * 
+* Begin Main Functions
  * 
 */
 
-// build the nav
 
+
+// Scroll to anchor ID using scrollTO event
+/**
+ * End Main Functions
+ * Begin Events
+ * 
+*/
+
+// Build menu 
 const navCreator = () => {
 
     let navContainer = '';
 
     // iterates over all sections on the page
     sections.forEach(function(section) {
-
         const sectionID = section.id;
         const sectionDataNav = section.dataset.nav;
 
         navContainer += `<li><a class="menu__link" href="#${sectionID}">${sectionDataNav}</a></li>`;
 
-    
     });
-
 
     // adds created nav elements to the navbar
     navBar.innerHTML = navContainer;
@@ -62,12 +98,12 @@ const navCreator = () => {
 navCreator();
 
 
-// Add class 'active' to section when near top of viewport
+// Scroll to section on link click
 
+// Set sections as active
 const activePosition = (section) => {
     return Math.floor(section.getBoundingClientRect().top);
 };
-
 
 // removes active class from a section not in viewport
 const activeClassRemove = (section) => {
@@ -99,37 +135,3 @@ const activeSection = () => {
 window.addEventListener('scroll', activeSection);
 
 
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
-
-
-// collapsible content controls
-
-document.querySelectorAll('.accordion__button').forEach(button => {
-    button.addEventListener('click', () => {
-        //const accordionContent = button.nextElementSibling;
-
-        button.classList.toggle('accordion__button--active');
-
-        //if (button.classList.contains('accordion__button--active')) {
-        //    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-        //} else {
-        //    accordionContent.style.maxHeight = 0;
-        // }
-    });
-
-
-
-});

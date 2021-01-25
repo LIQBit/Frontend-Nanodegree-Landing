@@ -62,14 +62,11 @@ section {
     
 }
 
-
-
-
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
 .navbar__menu ul {
-    padding: 1%;
+    padding: 2%;
     margin: 0;
     text-align: center;
 }
@@ -124,9 +121,8 @@ section {
 
 @media only screen and (min-width: 35em){
     .landing__container {
+
         max-width: 50em;
-        
-        /*padding: 4em;*/
         
     }
 }
@@ -222,17 +218,12 @@ section:nth-of-type(3n + 1) .landing__container::after {
 .accordion__button--active + .accordion__content { display: block}
 .accordion__button--active { background: #55555500 }
 
-
 .accordion__content {
-    /*overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.2s;*/
+  
     display: none;
     overflow: auto;
-    
-    
+     
 }
-
 
 /* ---- Theme State Rules ---- */
 /* Section Active Styles */
