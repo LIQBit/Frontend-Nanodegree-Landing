@@ -25,39 +25,6 @@ const sections = document.querySelectorAll('section');
  * 
 */
 
-
-// collapsible content controls
-
-document.querySelectorAll('.accordion__button').forEach(button => {
-    button.addEventListener('click', () => {
-
-        button.classList.toggle('accordion__button--active');
-
-    });
-
-});
-
-
-
-// show nav while scrolling/hide nav when scrolling stops
-
-let foo = null;
-
-document.addEventListener('scroll', () => {
-    const thisNav = document.querySelector('nav');
-    // clearTimeout method stops setTimeout from kicking in & displays nav while scrolling
-    if(foo !== null) {
-        clearTimeout(foo);
-        thisNav.style.display = 'block';
-    }
-
-    // hides nav when scrolling stops
-    foo = setTimeout(() => {
-        thisNav.style.display = 'none';
-    }, 4000);
-
-});
-
 /**
 * End Helper Functions
  * 
@@ -82,7 +49,7 @@ const navCreator = () => {
     let navContainer = '';
 
     // iterates over all sections on the page
-    sections.forEach(function(section) {
+    sections.forEach((section) => {
         const sectionID = section.id;
         const sectionDataNav = section.dataset.nav;
 
@@ -122,7 +89,7 @@ const activeClassAdd = (conditional, section) => {
 
 // Iterates through sections, checks a section's position, removes actives status & assigns active status accordingly   
 const activeSection = () => {
-    sections.forEach(function(section) {
+    sections.forEach((section) => {
         const position = activePosition(section);
 
         viewport = () => position < 200 && position >= -200;
@@ -133,5 +100,37 @@ const activeSection = () => {
 };
 
 window.addEventListener('scroll', activeSection);
+
+
+// collapsible content controls
+
+document.querySelectorAll('.accordion__button').forEach(button => {
+    button.addEventListener('click', () => {
+
+        button.classList.toggle('accordion__button--active');
+
+    });
+
+});
+
+
+// show nav while scrolling/hide nav when scrolling stops
+
+let foo = null;
+
+document.addEventListener('scroll', () => {
+    const thisNav = document.querySelector('nav');
+    // clearTimeout method stops setTimeout from kicking in & displays nav while scrolling
+    if(foo !== null) {
+        clearTimeout(foo);
+        thisNav.style.display = 'block';
+    }
+
+    // hides nav when scrolling stops
+    foo = setTimeout(() => {
+        thisNav.style.display = 'none';
+    }, 4000);
+
+});
 
 
