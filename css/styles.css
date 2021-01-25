@@ -58,14 +58,18 @@ main {
 section {
     position: relative;
     min-height: 80vh;
+    padding-top: 50px;
+    
 }
+
+
 
 
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
 .navbar__menu ul {
-    padding: 2%;
+    padding: 1%;
     margin: 0;
     text-align: center;
 }
@@ -115,12 +119,15 @@ section {
 .landing__container {
     padding: 1em;
     text-align: left;
+    
 }
 
 @media only screen and (min-width: 35em){
     .landing__container {
         max-width: 50em;
-        padding: 4em;
+        
+        /*padding: 4em;*/
+        
     }
 }
 
@@ -188,6 +195,42 @@ section:nth-of-type(3n + 1) .landing__container::after {
     border-radius: 50%;
     opacity: 0;
     transition: ease 0.5s all;
+}
+
+/*Accordion/collapsible content container rules*/
+
+.accordion__button {
+    display: block;
+    width: 80%;
+    padding: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #33333300;
+    color: #ffffff;
+    text-align: left;
+    transition: background 0.2s;
+    
+}
+
+.accordion__button::after {
+    
+    float: right;
+    transform: scale(1.5);
+}
+
+.accordion__button--active + .accordion__content { display: block}
+.accordion__button--active { background: #55555500 }
+
+
+.accordion__content {
+    /*overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s;*/
+    display: none;
+    overflow: auto;
+    
+    
 }
 
 
