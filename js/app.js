@@ -48,19 +48,21 @@ function navCreator () {
 
     // iterates over all sections on the page
     for (let i of sections) {
-        let section = document.createElement('li');
+        let navLink = document.createElement('li');
+        navLink.innerHTML = `<a class="menu__link" id="#${i.id}" href="#${i.id}" ${i.dataset.nav}</a>`;
 
-        section.className = 'menu__link';
+        //section.className = 'menu__link';
 
-        section.id = i.id;
+        //section.id = i.id;
 
-        section.dataset.nav = i.id;
 
-        section.innerText = i.dataset.nav;
+        //section.dataset.nav = i.id;
 
-        navBar.appendChild(section);
+        //section.innerText = i.dataset.nav;
 
-    };
+        navBar.appendChild(navLink);
+
+    }
 
 };
 
@@ -69,31 +71,41 @@ navCreator();
     
 // Scroll to section on link click
 
+navBar.addEventListener('click', scrollToSection = () => {
+    document.querySelectorAll('.menu__link').forEach(a => {
+        document.querySelectorAll('section').scrollIntoView ({
+            behavior: 'smooth'
+        })
+    })
+
+})
+
+
+
 // Set sections as active &/or remove active status
 
-isActive = (section) => {
+
+isActive = () => {
+
+    for(let section of sections) {
+        const activePosition = section.getBoundingClientRect();
+
+        if (activePosition.top < 200 && activePosition.bottom > 200) {
+            const id = section.getAttribute('id');
+
+            section.classList.add('your-active-class');
     
-    const activePosition = section.getBoundingClientRect();
+        } else {
 
-    if (activeSection.top < 200 && activeSection.bottom > 200) {
-        const id = section.getAttribute('id');
-        document.querySelector(`.${id}`).classList.add('active-class');
-        section.classList.add('your-active-class');
-
-    } else {
-
-        const id = section.getAttribute('id');
-
-        document.querySelector(`.${id}`).classList.remove('active-class');
-        section.classList.remove('your-active-class');
-        
+            const id = section.getAttribute('id');
+    
+            section.classList.remove('your-active-class');
+            
+        }
+   
     }
-
+    
 }
-
-
-
-
 
 // collapsible content controls
 
@@ -123,5 +135,9 @@ document.addEventListener('scroll', () => {
     foo = setTimeout(() => {
         thisNav.style.display = 'none';
     }, 4000);
+
+    //Calling sections
+
+    sections.forEach(section => isActive(section));
 
 });
