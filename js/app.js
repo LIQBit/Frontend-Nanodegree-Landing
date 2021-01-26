@@ -49,16 +49,7 @@ function navCreator () {
     // iterates over all sections on the page
     for (let i of sections) {
         let navLink = document.createElement('li');
-        navLink.innerHTML = `<a class="menu__link" id="#${i.id}" href="#${i.id}" ${i.dataset.nav}</a>`;
-
-        //section.className = 'menu__link';
-
-        //section.id = i.id;
-
-
-        //section.dataset.nav = i.id;
-
-        //section.innerText = i.dataset.nav;
+        navLink.innerHTML = `<a class="menu__link" id="#${i.id}" href="#${i.id}"> ${i.dataset.nav}</a>`;
 
         navBar.appendChild(navLink);
 
@@ -72,13 +63,17 @@ navCreator();
 // Scroll to section on link click
 
 navBar.addEventListener('click', scrollToSection = () => {
+
     document.querySelectorAll('.menu__link').forEach(a => {
+
         document.querySelectorAll('section').scrollIntoView ({
-            behavior: 'smooth'
+            
+        behavior: 'smooth'
+
         })
     })
 
-})
+});
 
 
 
@@ -103,9 +98,9 @@ isActive = () => {
             
         }
    
-    }
+    };
     
-}
+};
 
 // collapsible content controls
 
