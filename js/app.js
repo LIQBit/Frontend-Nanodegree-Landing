@@ -44,62 +44,55 @@ const sections = document.querySelectorAll('section');
 */
 
 // Build menu 
-const navCreator = () => {
-
-    let navContainer = '';
+function navCreator () {
 
     // iterates over all sections on the page
-    sections.forEach((section) => {
-        const sectionID = section.id;
-        const sectionDataNav = section.dataset.nav;
+    for (let i of sections) {
+        let section = document.createElement('li');
 
-        navContainer += `<li><a class="menu__link" href="#${sectionID}">${sectionDataNav}</a></li>`;
+        section.className = 'menu__link';
 
-    });
+        section.id = i.id;
 
-    // adds created nav elements to the navbar
-    navBar.innerHTML = navContainer;
+        section.dataset.nav = i.id;
+
+        section.innerText = i.dataset.nav;
+
+        navBar.appendChild(section);
+
+    };
 
 };
 
 navCreator();
 
-
+    
 // Scroll to section on link click
 
-// Set sections as active
-const activePosition = (section) => {
-    return Math.floor(section.getBoundingClientRect().top);
-};
+// Set sections as active &/or remove active status
 
-// removes active class from a section not in viewport
-const activeClassRemove = (section) => {
-    section.classList.remove('your-active-class');
-    section.style.cssText = 'background-color: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%)';
-};
+isActive = (section) => {
+    
+    const activePosition = section.getBoundingClientRect();
 
-// Adds a conditional. If true, add 'your-active-class' to section in viewport
-const activeClassAdd = (conditional, section) => {
-    if(conditional) {
+    if (activeSection.top < 200 && activeSection.bottom > 200) {
+        const id = section.getAttribute('id');
+        document.querySelector(`.${id}`).classList.add('active-class');
         section.classList.add('your-active-class');
-        section.style.cssText = 'background-color: rgba(139, 251, 255, 0.199)';
-    };
-};
+
+    } else {
+
+        const id = section.getAttribute('id');
+
+        document.querySelector(`.${id}`).classList.remove('active-class');
+        section.classList.remove('your-active-class');
+        
+    }
+
+}
 
 
-// Iterates through sections, checks a section's position, removes actives status & assigns active status accordingly   
-const activeSection = () => {
-    sections.forEach((section) => {
-        const position = activePosition(section);
 
-        viewport = () => position < 200 && position >= -200;
-
-        activeClassRemove(section);
-        activeClassAdd(viewport(),section);
-    });
-};
-
-window.addEventListener('scroll', activeSection);
 
 
 // collapsible content controls
@@ -132,5 +125,3 @@ document.addEventListener('scroll', () => {
     }, 4000);
 
 });
-
-
