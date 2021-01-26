@@ -66,11 +66,7 @@ navBar.addEventListener('click', scrollToSection = () => {
 
     document.querySelectorAll('.menu__link').forEach(a => {
 
-        document.querySelectorAll('section').scrollIntoView ({
-            
-        behavior: 'smooth'
-
-        })
+        document.querySelector('section').scrollIntoView({behavior: 'smooth'})
     })
 
 });
